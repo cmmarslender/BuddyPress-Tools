@@ -1,8 +1,15 @@
 <?php
+/**
+ * BuddyPress Repair Tools - Inspired by the bbPress repair tools
+ */
+
 
 add_action( 'admin_menu', 'bp_tools_admin_menu' );
 add_action( 'load-tools_page_bp-repair', 'bp_admin_repair_handler' );
 
+/**
+ * Adds the BuddyPress item to the 'Tools' menu
+ */
 function bp_tools_admin_menu() {
 	add_management_page(
 		__( 'BuddyPress', 'buddypress' ),
@@ -13,6 +20,9 @@ function bp_tools_admin_menu() {
 	);
 }
 
+/**
+ * Renders the BuddyPress Repair Page
+ */
 function bp_admin_repair() {
 	?>
 	<div class="wrap">
@@ -54,6 +64,9 @@ function bp_admin_repair() {
 	<?php
 }
 
+/**
+ * Handle the processing and feedback of the admin tools page
+ */
 function bp_admin_repair_handler() {
 	if ( ! bp_is_post_request() ) {
 		return;
@@ -129,6 +142,9 @@ function bp_admin_repair_friend_count() {
 	return array( 0, sprintf( $statement, __( 'Complete!', 'buddypress' ) ) );
 }
 
+/**
+ * Assemble the admin notices
+ */
 function bp_admin_tools_feedback( $message, $class = false ) {
 	if ( is_string( $message ) ) {
 		$message = '<p>' . $message . '</p>';
