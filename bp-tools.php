@@ -80,7 +80,6 @@ function bp_admin_repair_handler() {
 }
 
 
-
 /**
  * Get the array of the repair list
  *
@@ -127,7 +126,7 @@ function bp_admin_repair_friend_count() {
 		return array( 2, sprintf( $statement, $result ) );
 	}
 
-	return array( 0, sprintf( $statement, __( 'Complete!', 'bbpress' ) ) );
+	return array( 0, sprintf( $statement, __( 'Complete!', 'buddypress' ) ) );
 }
 
 function bp_admin_tools_feedback( $message, $class = false ) {
