@@ -21,17 +21,17 @@ function bp_admin_repair() {
 
 		<h2 class="nav-tab-wrapper">Repair BuddyPress</h2>
 
-		<p>BuddyPress keeps track of relationships.....for things.... Occasionally these relationships become out of sync, most often after an import or migration. Use the tools below to manually recalculate these relationships.</p>
-		<p class="description">Some of these tools create substantial database overhead. Avoid running more than 1 repair job at a time.</p>
+		<p><?php esc_html_e( 'BuddyPress keeps track of relationships between users. Occasionally these relationships become out of sync, most often after an import or migration. Use the tools below to manually recalculate these relationships.', 'buddypress' ); ?></p>
+		<p class="description"><?php esc_html_e( 'Some of these tools create substantial database overhead. Avoid running more than 1 repair job at a time.', 'buddypress' ); ?></p>
 
 		<form class="settings" method="post" action="">
 			<table class="form-table">
 				<tbody>
 					<tr valign="top">
-						<th scope="row">Relationships to Repair:</th>
+						<th scope="row"><?php esc_html_e( 'Relationships to Repair:', 'buddypress' ) ?></th>
 						<td>
 							<fieldset>
-								<legend class="screen-reader-text"><span>Repair</span></legend>
+								<legend class="screen-reader-text"><span><?php esc_html_e( 'Repair', 'buddypress' ) ?></span></legend>
 
 								<?php foreach ( bp_admin_repair_list() as $item ) : ?>
 
@@ -46,7 +46,7 @@ function bp_admin_repair() {
 			</table>
 
 			<fieldset class="submit">
-				<input class="button-primary" type="submit" name="submit" value="Repair Items" />
+				<input class="button-primary" type="submit" name="submit" value="<?php esc_attr_e( 'Repair Items', 'buddypress' ); ?>" />
 				<?php wp_nonce_field( 'bp-do-counts' ); ?>
 			</fieldset>
 		</form>
