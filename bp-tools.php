@@ -5,8 +5,8 @@ add_action( 'load-tools_page_bp-repair', 'bp_admin_repair_handler' );
 
 function bp_tools_admin_menu() {
 	add_management_page(
-		'BuddyPress',
-		'BuddyPress',
+		__( 'BuddyPress', 'buddypress' ),
+		__( 'BuddyPress', 'buddypress' ),
 		'manage_options',
 		'bp-repair',
 		'bp_admin_repair'
@@ -19,7 +19,7 @@ function bp_admin_repair() {
 
 		<?php screen_icon( 'tools' ); ?>
 
-		<h2 class="nav-tab-wrapper">Repair BuddyPress</h2>
+		<h2 class="nav-tab-wrapper"><?php _e( 'Repair BuddyPress', 'buddypress' ); ?></h2>
 
 		<p><?php esc_html_e( 'BuddyPress keeps track of relationships between users. Occasionally these relationships become out of sync, most often after an import or migration. Use the tools below to manually recalculate these relationships.', 'buddypress' ); ?></p>
 		<p class="description"><?php esc_html_e( 'Some of these tools create substantial database overhead. Avoid running more than 1 repair job at a time.', 'buddypress' ); ?></p>
