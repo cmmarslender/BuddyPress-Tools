@@ -150,14 +150,42 @@ function bp_admin_repair_friend_count() {
  * Recounts the activity mentions for each user
  */
 function bp_admin_repair_activity_mentions() {
-
+	// todo - not sure what this one is actually supposed to be. I see a 'new mentions' count, but that goes away after they are read..
 }
 
 /**
  * Count the number of groups each user is in
  */
 function bp_admin_repair_group_count() {
+	global $wpdb, $bp;
 
+	$statement = __( 'Counting the number of groups for each user&hellip; %s', 'buddypress' );
+	$result    = __( 'Failed!', 'buddypress' );
+
+	$sql_delete = "DELETE FROM {$wpdb->usermeta} WHERE meta_key IN ( 'total_group_count' );";
+	if ( is_wp_error( $wpdb->query( $sql_delete ) ) )
+		return array( 1, sprintf( $statement, $result ) );
+
+	$total_users = $wpdb->get_row( "SELECT count(ID) as c FROM {$wpdb->users}" )->c;
+
+	if ( $total_users > 0 ) {
+		$per_query = 500;
+		$offset = 0;
+		while( $offset < $total_users ) {
+			$users = get_users( array( 'offset' => $offset, 'number' => $per_query ) );
+
+			foreach ( $users as $user ) {
+				$group_count = $wpdb->get_row( $wpdb->prepare( "SELECT count(user_id) as c from {$bp->groups->table_name_members} WHERE user_id=%d", $user->ID ) )->c;
+				update_user_meta( $user->ID, 'total_group_count', $group_count );
+			}
+
+			$offset += $per_query;
+		}
+	} else {
+		return array( 2, sprintf( $statement, $result ) );
+	}
+
+	return array( 0, sprintf( $statement, __( 'Complete!', 'buddypress' ) ) );
 }
 
 /**
