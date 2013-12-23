@@ -100,7 +100,11 @@ function bp_admin_repair_handler() {
  */
 function bp_admin_repair_list() {
 	$repair_list = array(
-		0  => array( 'bp-user-friends',              __( 'Count friends for each user',                       'buddypress' ), 'bp_admin_repair_friend_count'               ),
+		0  => array( 'bp-user-friends',       __( 'Count friends for each user',             'buddypress' ), 'bp_admin_repair_friend_count' ),
+		5  => array( 'bp-activity-mentions',  __( 'Count activity mentions for each user',   'buddypress' ), 'bp_admin_repair_activity_mentions' ),
+		10 => array( 'bp-group-count',        __( 'Count groups for each user',              'buddypress' ), 'bp_admin_repair_group_count' ),
+		15 => array( 'bp-blog-count',         __( 'Count blogs for each user',               'buddypress' ), 'bp_admin_repair_count_blogs' ),
+		20 => array( 'bp-total-member-count', __( 'Count total members',                     'buddypress' ), 'bp_admin_repair_count_members' ),
 	);
 	ksort( $repair_list );
 
@@ -140,6 +144,34 @@ function bp_admin_repair_friend_count() {
 	}
 
 	return array( 0, sprintf( $statement, __( 'Complete!', 'buddypress' ) ) );
+}
+
+/**
+ * Recounts the activity mentions for each user
+ */
+function bp_admin_repair_activity_mentions() {
+
+}
+
+/**
+ * Count the number of groups each user is in
+ */
+function bp_admin_repair_group_count() {
+
+}
+
+/**
+ * Count the number of blogs for each user
+ */
+function bp_admin_repair_count_blogs() {
+
+}
+
+/**
+ * Count the total number of members
+ */
+function bp_admin_repair_count_members() {
+
 }
 
 /**
